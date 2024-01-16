@@ -23,12 +23,14 @@ class UsuariosView{
             echo '<div>El usuario o la contraseña son incorrectos.</div>';
         }
         
+        $this->mostrarFormularioLogin();
+        
     }
     
     public function mostrarFormularioLogin() {
         
         echo ' 
-        <form action="'.$_SERVER['PHP_SELF'].'" class="d-flex flex-column align-items-center" method="POST">
+        <form action="'.$_SERVER['PHP_SELF'].'?controller=usuarios&action=checkUserPass" class="d-flex flex-column align-items-center" method="POST">
                 
                 <label>Nombre</label>
                 <input type="text" name="user">
