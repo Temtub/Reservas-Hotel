@@ -11,63 +11,84 @@ class UsuariosController {
         $this->model = new UsuariosModel();
     }
 
-    // Muestra la lista de tareas
+    /**
+     * Function to check if the user and password are correct
+     */
     public function checkUserPass() {
-
-        /**********************************CHECK DATA SENT FROM FORM************************/
-        //Check if form sent any data by post
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-            //Check the data that has been sent by post
-            if (!isset($_POST['user'])) {
-                header('Location: ' . $_SERVER['PHP_SELF']);
-            }
-            if (!isset($_POST['pass'])) {
-                header('Location: ' . $_SERVER['PHP_SELF']);
-            }
-
-            $user = filter_input(INPUT_POST, 'user');
-            $pass = filter_input(INPUT_POST, 'pass');
-            
-        /**********************************END CHECK DATA SENT FROM FORM************************/
-
-        //Variables to check
-        $usuEquals = false;
-        $passEquals = false;
-        $errorBd = false;
-        $emptyData = false;
-
-        //Get the "usuarios" from the model that gets them from the BD
         try {
-            $usuarios = $this->model->getUsuarios();
+            // Check if form sent any data by post
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                
+                // Validate input data
+                $formData = $this->validateFormData();
+
+                // Get the "usuarios" from the model that gets them from the BD
+                $usuarios = $this->model->getUsuarios();
+
+                // Check user and password
+                $result = $this->checkCredentials($formData, $usuarios);
+
+                // Show the errors or correct to the user
+                $this->view->comprobarLogin($result['usuEquals'], $result['passEquals'], $result['errorBd'], $formData['emptyData']);
+            }
         } catch (Exception $ex) {
-            $errorBd = true;
-        }
-
-        //Go through all the users from the BD
-        foreach ($usuarios as $usuario) {
-
-            //If the name equals the name that the user wrote in the form turns TRUE the variable and checks if any user has been true checked already
-            if (trim($usuario['nombre']) === trim($user) && !$usuEquals) {
-                $usuEquals = true;
-            }
-
-            //Check the password and that no password has already checked
-            if (password_verify((trim($passw)), $usuario['contraseña']) && !$passEquals) {
-                $passEquals = true;
-            }
-        }
-
-        //Check if the data has been sended empty
-        if (check_empty_data($user, $passw)) {
-            $emptyData = true;
-        }
-
-        //Show the errors or correct to the user
-        $this->view->comprobarLogin($usuEquals, $passEquals, $errorBd, $emptyData);
+            // Handle exceptions (e.g., database errors)
+            $this->view->showErrorPage($ex->getMessage());
         }
     }
 
+    /**
+     * Validates if the data sent by the form is empty 
+     * @return Array Array with the results of validating the user and password 
+     */
+    private function validateFormData() {
+        $emptyData = false;
+
+        // Check if the data has been sent empty
+        if (empty($_POST['user']) || empty($_POST['pass'])) {
+            $emptyData = true;
+        }
+
+        $user = filter_input(INPUT_POST, 'user');
+        $pass = filter_input(INPUT_POST, 'pass');
+
+        //Returns an array of the data to check
+        return compact('user', 'pass', 'emptyData');
+    }
+
+    /**
+     * Function that checks if the user and password are correct in the BD
+     * @param Array $formData Array with info of the form
+     * @param Array $usuarios Array with the usuarios from the BD
+     * @return Array Retruns an array with the varables of checking that all the data has been corrected
+     */
+    private function checkCredentials($formData, $usuarios) {
+        $usuEquals = false;
+        $passEquals = false;
+        $errorBd = false;
+
+        //Travel the loop of users and check if password and user are the same
+        foreach ($usuarios as $usuario) {
+            
+            if (trim($usuario['nombre']) === trim($formData['user']) && !$usuEquals) {
+                $usuEquals = true;
+            }
+
+            if (password_verify(trim($formData['pass']), $usuario['contraseña']) && !$passEquals) {
+                $passEquals = true;
+            }
+
+            if ($usuEquals && $passEquals) {
+                break;
+            }
+        }
+
+        return compact('usuEquals', 'passEquals', 'errorBd', 'formData');
+    }
+
+    /**
+     * Calls the view to show the form of login
+     */
     public function showForm() {
         $this->view->mostrarFormularioLogin();
     }

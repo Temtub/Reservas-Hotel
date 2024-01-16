@@ -7,10 +7,13 @@ class UsuariosView{
         //If errorBd is true that means that there was an error selecting the data
         if($errorBd){
             echo '<div>Ha habido un error, intentelo de nuevo más tarde.</div>';
+            $this->mostrarFormularioLogin();
         }
         
+        //If $empty is true means that the data was sent empty
         elseif ($empty) {
             echo '<div>Rellene todos los datos.</div>';
+            $this->mostrarFormularioLogin();
         }
         
         //If usu, pass and errorBd are true that means that the login was correct and it redirectionates
@@ -21,9 +24,9 @@ class UsuariosView{
         //If none of that ocurss then it means that the login was incorrect
         else{
             echo '<div>El usuario o la contraseña son incorrectos.</div>';
+            $this->mostrarFormularioLogin();
         }
         
-        $this->mostrarFormularioLogin();
         
     }
     
