@@ -18,7 +18,7 @@ class UsuariosView{
         
         //If usu, pass and errorBd are true that means that the login was correct and it redirectionates
         elseif($usu && $pass && !$errorBd){
-            echo '<div>Correcto.</div>';
+            header('Location: '.$_SERVER['PHP_SELF'].'?controller=Hoteles&action=selectAllHotels');
         }
 
         //If none of that ocurss then it means that the login was incorrect
@@ -33,7 +33,7 @@ class UsuariosView{
     public function mostrarFormularioLogin() {
         
         echo ' 
-        <form action="'.$_SERVER['PHP_SELF'].'?controller=usuarios&action=checkUserPass" class="d-flex flex-column align-items-center" method="POST">
+        <form action="'.$_SERVER['PHP_SELF'].'?controller=Usuarios&action=checkUserPass" class="d-flex flex-column align-items-center" method="POST">
                 
                 <label>Nombre</label>
                 <input type="text" name="user">

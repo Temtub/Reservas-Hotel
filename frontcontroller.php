@@ -5,6 +5,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\UsuariosCo
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\UsuariosModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\UsuariosView.php';
 
+//Includes for "hoteles"
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\HotelesController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\HotelesModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\HotelesView.php';
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\db\DB.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\lib\functions.php';

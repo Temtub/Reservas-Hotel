@@ -11,6 +11,15 @@ class HotelesController {
         $this->view = new HotelesView();
         $this->model = new HotelesModel();
     }
+    
+    public function selectAllHotels() {
+        
+        $hoteles = $this->model->getHoteles();
+        
+        $this->view->showHotels($hoteles);
+        
+    }
+
 
     
 }

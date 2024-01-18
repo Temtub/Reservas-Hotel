@@ -3,8 +3,9 @@
 //Check if the user has registered
     session_start();
     if(!isset($_SESSION["user"])){
-        header("Location: ../../index.php?redirected=true");
+        header('Location: '.$_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\index.php');
     }
+    
     $user = $_SESSION['user'];
     
     if($user->getRol() !== 1){
