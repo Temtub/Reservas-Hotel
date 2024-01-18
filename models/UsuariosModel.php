@@ -1,5 +1,5 @@
 <?php
-
+    
 class UsuariosModel {
     // Obtiene una instancia de PDO para conectarse a la base de datos
     private $bd;
@@ -16,12 +16,14 @@ class UsuariosModel {
         // Preparamos una consulta de PDO para recuperar todas las tareas de la tabla "usuarios" y lo reservamos en una nueva variable
         $stmt = $this->pdo->prepare('SELECT * FROM usuarios');
         
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
+        
         //If theres an error in this part it throws an exception
         if(!$stmt->execute()){
             throw new Swoole\MySQL\Exception();
         }
         
         //Return the usuarios
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
     }
 }

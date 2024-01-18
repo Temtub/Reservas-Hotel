@@ -2,15 +2,12 @@
 
 //Check if the user has registered
     session_start();
+    
     if(!isset($_SESSION["user"])){
-        header('Location: '.$_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\index.php');
+        header('Location: '.$_SERVER['PHP_SELF'].'?controller=Usuarios&action=denieAcces');
     }
     
     $user = $_SESSION['user'];
-    
-    if($user->getRol() !== 1){
-        header("Location: ../../index.php?redirected=true");
-    }
     
     updateLastLoginTime();
     

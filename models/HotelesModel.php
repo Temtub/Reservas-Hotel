@@ -13,15 +13,18 @@ class HotelesModel {
 
     // Recupera la lista de tareas de la base de datos
     public function getHoteles() {
-        // Prepare a sql to get all the "hoteles" and save it in a new variable
+        // Preparamos una consulta de PDO para recuperar todas las tareas de la tabla "hotel" y lo reservamos en una nueva variable
         $stmt = $this->pdo->prepare('SELECT * FROM hoteles');
+        
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Hotel');
         
         //If theres an error in this part it throws an exception
         if(!$stmt->execute()){
             throw new Swoole\MySQL\Exception();
         }
         
-        //Return the data of the prepare
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        //Return the usuarios
+        return $stmt->fetchAll();
     }
 }

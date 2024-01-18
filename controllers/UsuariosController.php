@@ -29,7 +29,7 @@ class UsuariosController {
                 $result = $this->checkCredentials($formData, $usuarios);
 
                 // Show the errors or correct to the user
-                $this->view->comprobarLogin($result['usuEquals'], $result['passEquals'], $result['errorBd'], $formData['emptyData']);
+                $this->view->comprobarLogin($result['usuEquals'], $result['passEquals'], $result['errorBd'], $formData['emptyData'], $result['usu']);
             }
         } catch (Exception $ex) {
             // Handle exceptions (e.g., database errors)
@@ -66,30 +66,40 @@ class UsuariosController {
         $usuEquals = false;
         $passEquals = false;
         $errorBd = false;
-
+        $usu='';
+        //print_r($usuarios);
+        //exit();
         //Travel the loop of users and check if password and user are the same
         foreach ($usuarios as $usuario) {
             
-            if (trim($usuario['nombre']) === trim($formData['user']) && !$usuEquals) {
+            if (trim($usuario->getNombre() ) === trim($formData['user']) && !$usuEquals) {
                 $usuEquals = true;
             }
 
-            if (password_verify(trim($formData['pass']), $usuario['contraseña']) && !$passEquals) {
+            if (password_verify(trim($formData['pass']), $usuario->getContraseña() ) && !$passEquals) {
                 $passEquals = true;
             }
 
             if ($usuEquals && $passEquals) {
+                $usu = new Usuario($usuario->getId(), $usuario->getNombre(), $usuario->getContraseña(), $usuario->getFechaRegistro(), $usuario->getRol() );
                 break;
             }
         }
-
-        return compact('usuEquals', 'passEquals', 'errorBd', 'formData');
+        
+        //Returns an array of the data to check
+        return compact('usuEquals', 'passEquals', 'errorBd', 'formData', 'usu');
     }
 
     /**
      * Calls the view to show the form of login
      */
     public function showForm() {
+        $this->view->mostrarFormularioLogin();
+    }
+    
+    public function denieAcces(){
+        echo '<div>Inicie sesión antes.</div>';
+        echo '<img src="\Reservas-Hotel\views\assets\images\noGif.gif"/>';
         $this->view->mostrarFormularioLogin();
     }
 }

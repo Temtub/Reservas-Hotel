@@ -2,7 +2,7 @@
 
 class UsuariosView{
     // Muestra la lista de tareas
-    public function comprobarLogin($usu, $pass, $errorBd, $empty) {
+    public function comprobarLogin($userCheck, $pass, $errorBd, $empty, $user) {
        
         //If errorBd is true that means that there was an error selecting the data
         if($errorBd){
@@ -17,8 +17,13 @@ class UsuariosView{
         }
         
         //If usu, pass and errorBd are true that means that the login was correct and it redirectionates
-        elseif($usu && $pass && !$errorBd){
-            header('Location: '.$_SERVER['PHP_SELF'].'?controller=Hoteles&action=selectAllHotels');
+        elseif($userCheck && $pass && !$errorBd){
+
+            // Save the object of the user in the session
+            session_start();
+            $_SESSION['user'] = $user;
+            
+            header('Location: '.$_SERVER['PHP_SELF'].'?controller=HotelesHabitaciones&action=selectAllHotelesAndHabitaciones');
         }
 
         //If none of that ocurss then it means that the login was incorrect
@@ -26,7 +31,6 @@ class UsuariosView{
             echo '<div>El usuario o la contraseña son incorrectos.</div>';
             $this->mostrarFormularioLogin();
         }
-        
         
     }
     
