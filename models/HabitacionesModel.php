@@ -7,8 +7,8 @@ class HabitacionesModel {
 
     public function __construct() {
        // $this->pdo = new PDO('mysql:host=localhost;dbname=ejemplo10_tema6', 'root', '');
-        $this->bd = new DB();
-        $this->pdo = $this->bd->getPDO();
+      $this->bd = new DB();
+      $this->pdo = $this->bd->getPDO();
     }
 
     // Recupera la lista de tareas de la base de datos

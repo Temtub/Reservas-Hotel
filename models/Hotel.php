@@ -10,6 +10,16 @@ class Hotel {
     private $descripcion;
     private $foto;
 
+    /**
+     * Function to transform from mediumblob to the image in the necesary type to show in html
+     * @return String <p>An image of in medium blob</p>
+     */
+    public function getFotoBase64() {
+        $fotoBinaryData = $this->getFoto();
+        $fotoBase64 = base64_encode($fotoBinaryData);
+        return $fotoBase64;
+    }
+
     // Constructor
     public function __construct() {
        

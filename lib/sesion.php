@@ -1,6 +1,6 @@
 <?php
 
-//Check if the user has registered
+    //Check if the user has registered
     session_start();
     
     if(!isset($_SESSION["user"])){

@@ -5,7 +5,7 @@ class DB{
     
     public function __construct() {
         //Select the information from the config file
-        require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\config\Config.php';
+        require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\config\Config.php';
 
         //Select the data from the config archive
         require_once 'config/Config.php';

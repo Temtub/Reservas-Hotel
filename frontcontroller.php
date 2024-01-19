@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\db\DB.php';
+require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\db\DB.php';
 
 //Classes 
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\Usuario.php';
@@ -12,16 +12,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\UsuariosCo
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\UsuariosModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\UsuariosView.php';
 
-//Habitaciones and hoteles controller
+//Habitaciones and hoteles controller and view
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\HotelesHabitacionesController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\HotelesHabitacionesView.php';
 
 //Includes for "hoteles"
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\HotelesModel.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\HotelesView.php';
 
 //Includes for "habitaciones"
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\HabitacionesModel.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\HabitacionesView.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\lib\functions.php';
 
@@ -62,6 +61,7 @@ function cargarControlador($nombreControlador) {
     
     if (class_exists($controlador)) {
         return new $controlador();
+        
     } else {
         // Si el controlador no existe, se lanza una excepción
         //O añadir una página indicando el error del controlador
@@ -71,8 +71,9 @@ function cargarControlador($nombreControlador) {
 
 // Carga el controlador y la acción correspondientes
 if(isset($_GET["controller"])){
-    
+
     $controllerObj=cargarControlador($_GET["controller"]);
+    
     lanzarAccion($controllerObj);
     
 }else{
