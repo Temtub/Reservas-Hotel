@@ -10,7 +10,7 @@
     $user = $_SESSION['user'];
     
     updateLastLoginTime();
-    
+        
     
     /**
  * Function to check if the user has been inactive for more than 5 minutes or 1 hour

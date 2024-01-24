@@ -37,14 +37,29 @@ class HotelesHabitacionesController {
             // Check if form sent any data by post
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
+                if(isset($_POST['idHotel']) ){
+                    
+                    //Get the id from post
+                    $id = filter_input(INPUT_POST, 'idHotel');
+                    
+                    //Select the info of the hotel
+                    $hotel = $this->modelHotel->getOneHotel($id);
+                    
+                    //Get all rooms from that hotel
+                    $habitaciones = $this->modelHabitacion->gethabitacionesFromHotel($id);
+                    
+                    //Show the hotel and the rooms
+                    $this->viewHotelHabitaciones->showHotelAndRooms($hotel[0], $habitaciones);
+
+                }
+                
                 
             }
         } catch (Exception $ex) {
             // Handle exceptions (e.g., database errors)
-            $this->view->showErrorPage($ex->getMessage());
+            $this->viewHotelHabitaciones->showErrorPage($ex->getMessage());
         }
            
-        $this->viewHotelHabitaciones->showHotelAndRooms();
     }
     
 }

@@ -26,4 +26,22 @@ class HabitacionesModel {
         //Return the usuarios
         return $stmt->fetchAll();
     }
+    
+    public function gethabitacionesFromHotel($idHotel) {
+        // Preparamos una consulta de PDO para recuperar todas "habitaciones" de un hotel y lo reservamos en una nueva variable
+        $stmt = $this->pdo->prepare('SELECT * FROM habitaciones WHERE id_hotel=?');
+        
+        //Put the id of the hotel we searching
+        $stmt->bindParam(1, $idHotel);
+                
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Habitacion');
+        
+        //If theres an error in this part it throws an exception
+        if(!$stmt->execute()){
+            throw new Swoole\MySQL\Exception();
+        }
+        
+        //Return the usuarios
+        return $stmt->fetchAll();
+    }
 }

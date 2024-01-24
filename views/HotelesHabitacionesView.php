@@ -24,7 +24,7 @@ class HotelesHabitacionesView {
             }
             echo ' 
                 <form action="'.$_SERVER['PHP_SELF'].'?controller=HotelesHabitaciones&action=showHotelAndRooms" method="POST">
-                    <input type="hidden" name="idHotel">
+                    <input type="hidden" name="idHotel" value="'.$hotel->getId().'">
                     <input type="submit" name="sub">
                 </form>
                         </div>
@@ -34,8 +34,36 @@ class HotelesHabitacionesView {
         echo '</div>';
     }
     
-    public function showHotelAndRooms() {
+    public function showHotelAndRooms($hotel, $habitaciones) {
         echo '<h1>asd</h1>';
+        
+        $imagenBase64 = $hotel->getFotoBase64();
+        
+        
+        echo '  <div class="card" style="width: 18rem;">
+                        <img src="data:image/jpeg;base64,' . $imagenBase64. '" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">' . $hotel->getNombre() . '</h5>
+                            <p class="card-text">' . $hotel->getDescripcion() . '</p>
+                            ';
+            foreach ($habitaciones as $habitacion) {
+                if ($habitacion->getIdHotel() === $hotel->getId()) {
+                    echo '<form method="POST" action="'. $_SERVER['PHP_SELF'] .'?controller=ReservasHabitaciones&action=formReservas">  
+                            <label>'.$habitacion->getNumHabitacion().'</label>
+                            <input type="hidden" value="'.$habitacion->getNumHabitacion().' name="habitacionId">
+                            <input type="submit" value="Enviar">
+                    
+                        </form>';
+                }
+            }
+            echo ' 
+                
+                        </div>
+                    </div>';
+        
+    }
+    public function showErrorPage($param) {
+        echo '<h1>Error: '.$param.'</h1>';
     }
 
 }

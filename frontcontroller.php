@@ -1,16 +1,27 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\db\DB.php';
+try {
+    require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\db\DB.php';
+    
+} catch (Exception $ex) {
+}
 
 //Classes 
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\Usuario.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\Hotel.php';  
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\Habitacion.php';  
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\Reserva.php';  
+
 
 //Includes for "usuarios"
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\UsuariosController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\UsuariosModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\UsuariosView.php';
+
+//Includes for "ReservasHabitaciones"
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\ReservasHabitacionesController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\ReservasModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\ReservasHabitacionesView.php';
 
 //Habitaciones and hoteles controller and view
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\HotelesHabitacionesController.php';

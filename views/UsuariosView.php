@@ -53,5 +53,11 @@ class UsuariosView{
         
     }
     
+    public function showError($errorMsg, $img=null) {
+        
+        echo '<div>'.$errorMsg.'</div>';
+        echo `<img src="\Reservas-Hotel\views\assets\images\`.$img"/>`; 
+    }
+    
 }
 

@@ -27,4 +27,22 @@ class HotelesModel {
         //Return the usuarios
         return $stmt->fetchAll();
     }
+    
+    public function getOneHotel($id) {
+        // Preparamos una consulta de PDO para recuperar un "hotel" y lo reservamos en una nueva variable
+        $stmt = $this->pdo->prepare('SELECT * FROM hoteles WHERE id=?');
+        
+        //Put the id of the hotel we searching
+        $stmt->bindParam(1, $id);
+                
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Hotel');
+        
+        //If theres an error in this part it throws an exception
+        if(!$stmt->execute()){
+            throw new Swoole\MySQL\Exception();
+        }
+        
+        //Return the usuarios
+        return $stmt->fetchAll();
+    }
 }

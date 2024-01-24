@@ -18,7 +18,7 @@ class UsuariosController {
         try {
             // Check if form sent any data by post
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                
+
                 // Validate input data
                 $formData = $this->validateFormData();
 
@@ -66,26 +66,26 @@ class UsuariosController {
         $usuEquals = false;
         $passEquals = false;
         $errorBd = false;
-        $usu='';
+        $usu = '';
         //print_r($usuarios);
         //exit();
         //Travel the loop of users and check if password and user are the same
         foreach ($usuarios as $usuario) {
-            
-            if (trim($usuario->getNombre() ) === trim($formData['user']) && !$usuEquals) {
+
+            if (trim($usuario->getNombre()) === trim($formData['user']) && !$usuEquals) {
                 $usuEquals = true;
             }
 
-            if (password_verify(trim($formData['pass']), $usuario->getContraseña() ) && !$passEquals) {
+            if (password_verify(trim($formData['pass']), $usuario->getContraseña()) && !$passEquals) {
                 $passEquals = true;
             }
 
             if ($usuEquals && $passEquals) {
-                $usu = new Usuario($usuario->getId(), $usuario->getNombre(), $usuario->getContraseña(), $usuario->getFechaRegistro(), $usuario->getRol() );
+                $usu = new Usuario($usuario->getId(), $usuario->getNombre(), $usuario->getContraseña(), $usuario->getFechaRegistro(), $usuario->getRol());
                 break;
             }
         }
-        
+
         //Returns an array of the data to check
         return compact('usuEquals', 'passEquals', 'errorBd', 'formData', 'usu');
     }
@@ -96,10 +96,30 @@ class UsuariosController {
     public function showForm() {
         $this->view->mostrarFormularioLogin();
     }
-    
-    public function denieAcces(){
-        echo '<div>Inicie sesión antes.</div>';
-        echo '<img src="\Reservas-Hotel\views\assets\images\noGif.gif"/>';
+
+    public function denieAcces() {
+        $this->view->showError('No puedes acceder sin iniciar sesión.', 'noGif.gif');
         $this->view->mostrarFormularioLogin();
+    }
+
+    public function closeSession() {
+
+        session_start();
+
+        // Destroy the session
+        $_SESSION = array();
+        session_destroy();
+
+        // Delete the cookies
+        setcookie(session_name(), "", time() - 1000, "/");
+
+        $this->view->showError('Se ha cerrado sesión.');
+        $this->view->mostrarFormularioLogin();
+    }
+
+    public function noBdConnection() {
+        echo '<div>Estamos en mantenimiento, prueba más tarde.</div>';
+        // echo '<img src="\Reservas-Hotel\views\assets\images\sryGid.gif"/>';
+        //    $this->view->mostrarFormularioLogin();
     }
 }
