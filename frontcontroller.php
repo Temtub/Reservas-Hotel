@@ -18,6 +18,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\UsuariosCo
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\UsuariosModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\UsuariosView.php';
 
+//Includes for "habitaciones"
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\HabitacionesModel.php';
+
 //Includes for "ReservasHabitaciones"
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\ReservasHabitacionesController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\ReservasModel.php';
@@ -30,8 +33,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\HotelesHabitacio
 //Includes for "hoteles"
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\HotelesModel.php';
 
-//Includes for "habitaciones"
-require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\HabitacionesModel.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\lib\functions.php';
 

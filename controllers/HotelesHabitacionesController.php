@@ -28,6 +28,18 @@ class HotelesHabitacionesController {
         
     }
     
+    public function noDataSelectAllHotelesAndHabitaciones() {
+               
+        //check the session 
+        require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\lib\sesion.php';
+
+        $hoteles = $this->modelHotel->getHoteles();
+        $habitaciones = $this->modelHabitacion->getHabitaciones();
+        
+        $this->viewHotelHabitaciones->noDataShowHotelRooms($hoteles, $habitaciones);
+        
+    }
+    
     public function showHotelAndRooms() {
         //check the session 
         require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\lib\sesion.php';

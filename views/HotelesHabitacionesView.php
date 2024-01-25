@@ -34,6 +34,12 @@ class HotelesHabitacionesView {
         echo '</div>';
     }
     
+    public function noDataShowHotelRooms($hotel, $habitaciones) {
+        
+        echo '<div>Has de escoger una habitación para hacer una reserva.</div>';
+        $this->showHotelsRooms($hotel, $habitaciones);
+    }
+    
     public function showHotelAndRooms($hotel, $habitaciones) {
         echo '<h1>asd</h1>';
         
@@ -50,7 +56,7 @@ class HotelesHabitacionesView {
                 if ($habitacion->getIdHotel() === $hotel->getId()) {
                     echo '<form method="POST" action="'. $_SERVER['PHP_SELF'] .'?controller=ReservasHabitaciones&action=formReservas">  
                             <label>'.$habitacion->getNumHabitacion().'</label>
-                            <input type="hidden" value="'.$habitacion->getNumHabitacion().' name="habitacionId">
+                            <input type="hidden" value="'.$habitacion->getNumHabitacion().'" name="habitacionId">
                             <input type="submit" value="Enviar">
                     
                         </form>';
@@ -62,6 +68,8 @@ class HotelesHabitacionesView {
                     </div>';
         
     }
+    
+    
     public function showErrorPage($param) {
         echo '<h1>Error: '.$param.'</h1>';
     }
