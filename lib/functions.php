@@ -23,6 +23,11 @@ function check_empty_data(...$args) {
 }
 
 
+function check_dates($entryDate, $exitDate){
+    
+    //if($entryDate)
+}
+
 
 
 

@@ -35,7 +35,7 @@ class ReservasHabitacionesController {
 
         $habitacion = $this->modelHabitaciones->getHabitacion($id);
 
-        $this->view->showFormReservas($habitacion[0], $entrada, $salida);
+        $this->view->showFormReservas($habitacion, $entrada, $salida);
     }
 
     public function noDataFormReservas() {
@@ -93,12 +93,26 @@ class ReservasHabitacionesController {
         $fechaEntrada = filter_input(INPUT_POST, "fechaEntrada");
         $fechaSalida = filter_input(INPUT_POST, "fechaSalida");
         
+        echo $fechaEntrada;
+        echo $fechaSalida;
+        
+        if($fechaEntrada > $fechaSalida){
+            echo 'Mal';
+        }
+        exit();
+        
         //Get the info from the room
         $habitacion = $this->modelHabitaciones->getHabitacion($id);
         
         $user = $_SESSION['user'];
-                
-        //If the code reaches here means that the info is correct
-        $this->modelReservas->addReserva($habitacion, $fechaEntrada, $fechaSalida, $user);
+        
+        try {
+            
+            //If the code reaches here means that the info is correct
+            $this->modelReservas->addReserva($habitacion, $fechaEntrada, $fechaSalida, $user);
+        } catch (Exception $exc) {
+            header('Location:' . $_SERVER['PHP_SELF'] . '?controller=HotelesHabitaciones&action=addError');
+        }
+
     }
 }

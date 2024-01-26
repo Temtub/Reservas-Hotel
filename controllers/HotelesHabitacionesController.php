@@ -74,5 +74,10 @@ class HotelesHabitacionesController {
            
     }
     
+    public function addError() {
+        echo '<div>Ha ocurrido un error haciendo la reserva, vuelve a intentarlo</div>';
+        $this->selectAllHotelesAndHabitaciones();
+    }
+    
 }
 

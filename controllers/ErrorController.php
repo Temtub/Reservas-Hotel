@@ -11,5 +11,4 @@ class ErrorController {
         $this->model = new UsuariosModel();
     }
 
-
 }

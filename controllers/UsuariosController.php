@@ -27,7 +27,7 @@ class UsuariosController {
 
                 // Check user and password
                 $result = $this->checkCredentials($formData, $usuarios);
-
+            
                 // Show the errors or correct to the user
                 $this->view->comprobarLogin($result['usuEquals'], $result['passEquals'], $result['errorBd'], $formData['emptyData'], $result['usu']);
             }
@@ -81,11 +81,13 @@ class UsuariosController {
             }
 
             if ($usuEquals && $passEquals) {
-                $usu = new Usuario($usuario->getId(), $usuario->getNombre(), $usuario->getContraseña(), $usuario->getFechaRegistro(), $usuario->getRol());
+                
+                $usu = $usuario;
+                
                 break;
             }
         }
-
+        
         //Returns an array of the data to check
         return compact('usuEquals', 'passEquals', 'errorBd', 'formData', 'usu');
     }
