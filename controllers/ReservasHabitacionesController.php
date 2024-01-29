@@ -94,7 +94,7 @@ class ReservasHabitacionesController {
         if($entradaCheck === true || $salidaCheck === true){//Relocate the user
             header('Location:' . $_SERVER['PHP_SELF'] . '?controller=ReservasHabitaciones&action=noDataFormReservas&entrada='.($entradaCheck ? "true" : "false") .'&salida='. ($salidaCheck ? "true" : "false") .'&id='.$id);
         }
-        exit();
+        
         //Save the values from the 
         $fechaEntrada = filter_input(INPUT_POST, "fechaEntrada");
         $fechaSalida = filter_input(INPUT_POST, "fechaSalida");
@@ -121,6 +121,28 @@ class ReservasHabitacionesController {
             $this->modelReservas->addReserva($habitacion, $fechaEntrada, $fechaSalida, $user);
         } catch (Exception $exc) {
             header('Location:' . $_SERVER['PHP_SELF'] . '?controller=HotelesHabitaciones&action=addError');
+        }
+
+    }
+
+    public function viewAllReservas(){
+        
+        require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\lib\sesion.php';
+
+        //Get all the reservas
+        $reservas = $this->modelReservas->getReservas();
+
+        $user = $_SESSION['user'];
+
+        echo $reservas[12]->getIdUsuario();
+
+        //For each reserva get the ones that are from the user
+        foreach ($reservas as $reserva) {
+
+            //If the user equals the actual user
+            if($reserva->getIdUsuario() == $user->getId() ){
+                echo $reserva->getId();
+            }
         }
 
     }

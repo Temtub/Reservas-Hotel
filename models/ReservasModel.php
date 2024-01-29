@@ -14,19 +14,23 @@ class ReservasModel {
 
     // Recupera la lista de tareas de la base de datos
     public function getReservas() {
-        // Preparamos una consulta de PDO para recuperar todas las tareas de la tabla "habitaciones" y lo reservamos en una nueva variable
+        // Preparamos una consulta de PDO para recuperar todas las tareas de la tabla "reservas" y lo reservamos en una nueva variable
         $stmt = $this->pdo->prepare('SELECT * FROM reservas');
-
+    
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Reserva');
-
+    
         //If theres an error in this part it throws an exception
         if (!$stmt->execute()) {
-            throw new Swoole\MySQL\Exception();
+            throw new Swoole\MySQL\Exception("Error al ejecutar la consulta.");
         }
-
-        //Return the usuarios
+    
+        $reser = $stmt->fetchAll();
+        var_dump($reser);
+        echo $reser[1]->getFechaEntrada(); exit();
+        //Return the reservas
         return $stmt->fetchAll();
     }
+    
 
     public function addReserva($habitacion, $fechaEntrada, $fechaSalida, $user) {
         // Preparamos una consulta de PDO para insertar una reserva en la tabla "reservas"

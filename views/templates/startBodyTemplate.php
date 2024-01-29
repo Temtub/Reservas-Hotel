@@ -31,7 +31,12 @@
                                    ?>" >Ver hoteles y habitaciones</a>
                             </li>
                             
-                            
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" 
+                                   href="<?php
+                                    echo $_SERVER['PHP_SELF'] . '?controller=ReservasHabitaciones&action=viewAllReservas';
+                                   ?>" >Ver reservas</a>
+                            </li>
                             
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" 
@@ -41,6 +46,8 @@
                             </li>
                         </ul>
                     </div>
+                    
+                    <div>Ultima conexión: <?php echo getLastLoginTime();?></div>
                 </div>
             </nav>
 

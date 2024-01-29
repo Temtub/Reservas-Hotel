@@ -37,6 +37,10 @@ class ReservasHabitacionesView {
         </form>';
     }
     
+    public function showReserva() {
+        
+    }
+
     public function showMessage($errorMsg, $type="normal", $img=null) {
         
         echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
