@@ -35,8 +35,12 @@ class UsuariosView{
         
     }
     
+    /**
+     * Function to show the form of login to the page
+     */
     public function mostrarFormularioLogin() {
         
+        //Form to the page
         echo ' 
         <form action="'.$_SERVER['PHP_SELF'].'?controller=Usuarios&action=checkUserPass" class="d-flex flex-column align-items-start form" method="POST">
 

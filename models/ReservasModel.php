@@ -23,10 +23,7 @@ class ReservasModel {
         if (!$stmt->execute()) {
             throw new Swoole\MySQL\Exception("Error al ejecutar la consulta.");
         }
-    
-        $reser = $stmt->fetchAll();
-        var_dump($reser);
-        echo $reser[1]->getFechaEntrada(); exit();
+        
         //Return the reservas
         return $stmt->fetchAll();
     }

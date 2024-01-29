@@ -37,6 +37,7 @@ class ReservasHabitacionesController {
     }
 
     public function noDataFormReservas() {
+        
         if(!isset($_GET['entrada']) || !isset($_GET['salida']) ){
             header('Location:' . $_SERVER['PHP_SELF'] . '?controller=HotelesHabitaciones&action=noDataSelectAllHotelesAndHabitaciones');
         }
@@ -78,11 +79,11 @@ class ReservasHabitacionesController {
         $id = filter_input(INPUT_POST, "habitacionId");
 
         //Check if fechaEntrada or fechaSalida is empty or isnt filled
-        if (!isset($_POST['fechaEntrada']) || $_POST['fechaEntrada'] === '') {
+        if (!isset($_POST['fechaEntrada']) || empty($_POST['fechaEntrada']) ) {
             $entradaCheck = true;
         }
         
-        if (!isset($_POST['fechaSalida']) || $_POST['fechaSalida'] === '') {
+        if (!isset($_POST['fechaSalida']) || empty($_POST['fechaSalida']) ) {
             $salidaCheck = true;
         }
         
@@ -92,14 +93,13 @@ class ReservasHabitacionesController {
         
         //If fechaEntrada or Fechasalida are true means that no data have been sent or that is empty
         if($entradaCheck === true || $salidaCheck === true){//Relocate the user
-            header('Location:' . $_SERVER['PHP_SELF'] . '?controller=ReservasHabitaciones&action=noDataFormReservas&entrada='.($entradaCheck ? "true" : "false") .'&salida='. ($salidaCheck ? "true" : "false") .'&id='.$id);
+            header('Location:' . $_SERVER['PHP_SELF'] . '?controller=ReservasHabitaciones&action=noDataFormReservas&entrada='.$entradaCheck.'&salida='.$salidaCheck .'&id='.$id);
         }
         
         //Save the values from the 
         $fechaEntrada = filter_input(INPUT_POST, "fechaEntrada");
         $fechaSalida = filter_input(INPUT_POST, "fechaSalida");
-        
-        
+
         // Convert the dates to unix
         $fechaEntrada_unix = strtotime($fechaEntrada);
         $fechaSalida_unix = strtotime($fechaSalida);
@@ -133,12 +133,12 @@ class ReservasHabitacionesController {
         $reservas = $this->modelReservas->getReservas();
 
         $user = $_SESSION['user'];
-
-        echo $reservas[12]->getIdUsuario();
-
+        
         //For each reserva get the ones that are from the user
         foreach ($reservas as $reserva) {
 
+            
+            echo $reserva->getIdHabitacion().' ';
             //If the user equals the actual user
             if($reserva->getIdUsuario() == $user->getId() ){
                 echo $reserva->getId();

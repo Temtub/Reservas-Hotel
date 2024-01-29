@@ -6,16 +6,15 @@ class ReservasHabitacionesView {
         echo '<h1>Quieres alquilar la habitacion ' . $habitacion->getNumHabitacion() . '</h1>';
 
         
-        if($entrada === true){
-            echo "asd";
+        if($entrada === "true"){
             $this->showMessage('Rellena la fecha de entrada.', 'error');
         }
         
-        if($salida === true){
+        if($salida === "true"){
             $this->showMessage('Rellena la fecha de salida.', 'error');
         }
         
-        if($wrongDate === true && $salida === false && $entrada === false){
+        if($wrongDate === "true" && $salida === "false" && $entrada === "false"){
             $this->showMessage('La entrada no puede ser antes que la salida.', 'error');
         }
         
@@ -44,7 +43,9 @@ class ReservasHabitacionesView {
     public function showMessage($errorMsg, $type="normal", $img=null) {
         
         echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
-        echo '<img src="/Reservas-Hotel/views/assets/images/'.$img.'"/>';
+        if($img !== null){
+            echo '<img src="/Reservas-Hotel/views/assets/images/'.$img.'"/>';
+        }
 
     }
     
