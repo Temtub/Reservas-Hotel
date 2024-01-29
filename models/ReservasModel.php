@@ -48,6 +48,7 @@ class ReservasModel {
             throw new Swoole\MySQL\Exception();
         }
         
+        header('Location:' . $_SERVER['PHP_SELF'] . '?controller=HotelesHabitaciones&action=correctAdd');
         
     }
 }

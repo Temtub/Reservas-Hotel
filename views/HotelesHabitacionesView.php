@@ -5,27 +5,28 @@ class HotelesHabitacionesView {
     // Muestra la lista de tareas
     public function showHotelsRooms($hoteles, $habitaciones) {
 
-        echo '<div>';
+        echo '<div class="hotelContainer">';
 
         foreach ($hoteles as $hotel) {
             //Transform the image to be capable of show it
             $imagenBase64 = $hotel->getFotoBase64();
 
-            echo '  <div class="card" style="width: 18rem;">
-                        <img src="data:image/jpeg;base64,' . $imagenBase64 . '" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $hotel->getNombre() . '</h5>
+            echo '  <div class="cardCont ">
+                        <img src="data:image/jpeg;base64,' . $imagenBase64 . '" class="card__img" alt="...">
+                        <div class="card__body">
+                            <h2 class="card-title">' . $hotel->getNombre() . '</h2>
+                            <h3 class="direction">'. $hotel->getDireccion().' - '. $hotel->getCiudad().' - '. $hotel->getPais().'</h3>
                             <p class="card-text">' . $hotel->getDescripcion() . '</p>
                             ';
             foreach ($habitaciones as $habitacion) {
                 if ($habitacion->getIdHotel() === $hotel->getId()) {
-                    echo '<p>' . $habitacion->getNumHabitacion() . '</p>';
+                    echo '<p>' . $habitacion->getNumHabitacion().' - '. $habitacion->getDescripcion() . '</p>';
                 }
             }
             echo ' 
                 <form action="'.$_SERVER['PHP_SELF'].'?controller=HotelesHabitaciones&action=showHotelAndRooms" method="POST">
                     <input type="hidden" name="idHotel" value="'.$hotel->getId().'">
-                    <input type="submit" name="sub">
+                    <input class="button smallButton" type="submit" name="sub" value="Ver habitaciones">
                 </form>
                         </div>
                     </div>';
@@ -41,38 +42,40 @@ class HotelesHabitacionesView {
     }
     
     public function showHotelAndRooms($hotel, $habitaciones) {
-        echo '<h1>asd</h1>';
-        
+        echo '<div class="hotelContainer">';
+            
+        //Transform the image to be capable of showing it
         $imagenBase64 = $hotel->getFotoBase64();
-        
-        
-        echo '  <div class="card" style="width: 18rem;">
-                        <img src="data:image/jpeg;base64,' . $imagenBase64. '" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $hotel->getNombre() . '</h5>
-                            <p class="card-text">' . $hotel->getDescripcion() . '</p>
-                            ';
-            foreach ($habitaciones as $habitacion) {
-                if ($habitacion->getIdHotel() === $hotel->getId()) {
-                    echo '<form method="POST" action="'. $_SERVER['PHP_SELF'] .'?controller=ReservasHabitaciones&action=formReservas">  
-                            <label>'.$habitacion->getNumHabitacion().'</label>
-                            <input type="hidden" value="'.$habitacion->getNumHabitacion().'" name="habitacionId">
-                            <input type="submit" value="Enviar">
-                    
-                        </form>';
-                }
-            }
-            echo ' 
-                
-                        </div>
-                    </div>';
-        
+    
+        echo '<div class="cardCont ">
+                    <img src="data:image/jpeg;base64,' . $imagenBase64 . '" class="card__img" alt="...">
+                    <div class="card__body">
+                        <h2 class="card-title">' . $hotel->getNombre() . '</h2>
+                        <h3 class="direction">'. $hotel->getDireccion().' - '. $hotel->getCiudad().' - '. $hotel->getPais().'</h3>
+                        <p class="card-text">' . $hotel->getDescripcion() . '</p>';
+
+                        foreach ($habitaciones as $habitacion) {
+                            if ($habitacion->getIdHotel() === $hotel->getId()) {
+                                echo '<form class="formulario mt-5" method="POST" action="'. $_SERVER['PHP_SELF'] .'?controller=ReservasHabitaciones&action=formReservas">  
+                                    '. $habitacion->getTypeIcon($habitacion->getTipo() ) .'
+                                    <p>' . $habitacion->getNumHabitacion().' - '. $habitacion->getDescripcion(). '</p>
+                                    <p>'. $habitacion->getPrecio().'€</p>
+                                    <input type="hidden" value="'.$habitacion->getId().'" name="habitacionId">
+                                    <input class="button smallButton " type="submit" value="Reservar">
+                                </form>';
+                            }
+                        }
+        echo '</div></div></div>'; // Cierre de los divs
     }
+    
     
     
     public function showErrorPage($param) {
         echo '<h1>Error: '.$param.'</h1>';
     }
-
+    
+    public function showMessage($msg) {
+        echo '<div>'.$msg.'</div>';
+    }
 }
 

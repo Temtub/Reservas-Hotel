@@ -2,21 +2,27 @@
 
 class ReservasHabitacionesView {
 
-    public function showFormReservas($habitacion, $entrada="false", $salida="false") {
+    public function showFormReservas($habitacion, $entrada=false, $salida=false, $wrongDate=false) {
         echo '<h1>Quieres alquilar la habitacion ' . $habitacion->getNumHabitacion() . '</h1>';
 
-        if($entrada === "true"){
-            echo '<div>Rellena la fecha de entrada.</div>';
+        
+        if($entrada === true){
+            echo "asd";
+            $this->showMessage('Rellena la fecha de entrada.', 'error');
         }
         
-        if($salida === "true"){
-            echo '<div>Rellena la fecha de salida.</div>';
+        if($salida === true){
+            $this->showMessage('Rellena la fecha de salida.', 'error');
         }
         
-        echo '<form method="POST" action="' . $_SERVER['PHP_SELF'] . '?controller=ReservasHabitaciones&action=submitReserva" class="row g-3">
+        if($wrongDate === true && $salida === false && $entrada === false){
+            $this->showMessage('La entrada no puede ser antes que la salida.', 'error');
+        }
+        
+        echo '<form class="row g-3 formulario" method="POST" action="' . $_SERVER['PHP_SELF'] . '?controller=ReservasHabitaciones&action=submitReserva">
             <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Habitación:</label>
-                <input name="habitacionId" type="text" class="form-control" value="' . $habitacion->getNumHabitacion() . '" readonly>
+                <label class="form-label">Habitación:</label>
+                <input name="habitacionId" type="text" class="form-control" value="' . $habitacion->getId() . '" readonly>
 
                 <label for="inputFechaEntrada" class="form-label">Fecha de entrada:</label>
                 <input type="date" class="form-control" id="inputFechaEntrada" name="fechaEntrada">
@@ -29,6 +35,13 @@ class ReservasHabitacionesView {
                 </div>
             </div>
         </form>';
+    }
+    
+    public function showMessage($errorMsg, $type="normal", $img=null) {
+        
+        echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
+        echo '<img src="/Reservas-Hotel/views/assets/images/'.$img.'"/>';
+
     }
     
 }

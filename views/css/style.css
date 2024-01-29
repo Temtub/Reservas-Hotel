@@ -1,0 +1,184 @@
+
+@font-face{
+    font-family: "NewWake";
+    src: url("../assets/fonts/NewakeFont-Demo.otf");
+}
+@font-face{
+    font-family: "Normal";
+    src: url("../assets/fonts/Louis George Cafe.ttf");
+}
+
+body{
+    font-family: Normal;
+}
+/**********************************LOGIN FORM**************************/
+.form{
+    margin: auto;
+
+    width: 300px;
+    font-family: NewWake;
+
+}
+.form__title{
+    
+    font-size: 32px;
+}
+.form__label{
+    font-size: 14px;
+}
+.input{
+    all: unset;
+    border-radius: 5px;
+    border: 1px solid grey;
+
+    padding: 5px;
+
+    height: 30px;
+}
+
+.input:focus{
+    box-shadow: 0px 0px 0px 1px rgba(0, 55, 219, 0.473);
+    
+}
+
+.button{
+    all: unset;
+    border-radius: 5px;
+    border: 1px solid grey;
+    text-align: center;
+    padding: 5px;
+    width: 288px;
+    height: 30px;
+    background-color: rgba(0, 55, 219, 0.473);
+    transition: all .2s;
+    font-weight: 100;
+}
+.button:hover{
+    background-color: rgba(0, 55, 219, 0.575);
+}
+/**********************************END LOGIN FORM**************************/
+
+
+/************NAVBAR ****************/
+.navbar__title {
+    font-family: NewWake;
+    color: #FF9933;
+    font-size: 2rem;
+    letter-spacing: 1px; /* Valor inicial de letter-spacing */
+    transition: color 0.1s, letter-spacing 0.5s; /* Transición para color y letter-spacing */
+}
+
+.navbar__title:hover {
+    color: #FF7999;
+    letter-spacing: 3px; /* Cambiar el letter-spacing al hacer hover */
+}
+
+.navbar__title .firstTitle {
+    color: rgba(0, 55, 219, 0.473);
+}
+
+.navbar__title:hover .firstTitle {
+    color: rgba(0, 40, 119, 0.473); 
+}
+/************END NAVBAR ****************/
+
+
+/************ERROR MESSAGEs ****************/
+.message{
+    width: 40%;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    
+}
+
+.normal{
+    background-color: rgba(0, 40, 119, 0.473); 
+}
+.error{
+    background-color: #FF7999;
+}
+
+
+/************END ERROR MESSAGEs ****************/
+
+
+
+/********************** HOTEL CARD *******************/
+.hotelContainer{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cardCont{
+    all: unset;
+    width: 80%;
+
+    display: flex;
+    flex-direction: row;
+    
+    border-radius: 5px;
+    box-shadow: 0px 0px 52px -10px rgba(0,0,0,0.25);
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.cardCont h2 {
+    font-family: "NewWake";
+    font-size: 1.8rem;
+}
+
+.direction{
+    font-size: 1rem;
+    color: grey;
+    letter-spacing: 0px;
+    margin-top: -5px;
+}
+.card__img{
+    max-width: 350px;
+    max-height: 350px;
+    width: auto;
+    height: auto;
+    border-radius: 5px 0px 0px 5px;
+}
+.card__body{
+    /* margin-left: 20px; */
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+.smallButton{
+    width: 150px;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
+}
+.icon{
+    margin: 0px;
+    margin-bottom: -45px;
+    margin-top: 15px;
+}
+/********************** END HOTEL CARD *******************/
+
+
+/****** HACER RESERVA FORM ************/
+
+/****** END HACER RESERVA FORM ************/
+
+
+
+
+
+
+

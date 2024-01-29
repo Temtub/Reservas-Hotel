@@ -59,6 +59,7 @@ class HabitacionesModel {
             throw new Swoole\MySQL\Exception();
         }
         
+        
         //Return the usuarios
         return $stmt->fetch();
     }

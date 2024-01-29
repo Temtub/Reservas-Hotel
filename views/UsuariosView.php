@@ -37,25 +37,32 @@ class UsuariosView{
     public function mostrarFormularioLogin() {
         
         echo ' 
-        <form action="'.$_SERVER['PHP_SELF'].'?controller=Usuarios&action=checkUserPass" class="d-flex flex-column align-items-center" method="POST">
-                
-                <label>Nombre</label>
-                <input type="text" name="user">
-                
-                <label>Contraseña</label>
-                <input type="password" name="pass">
-                
-                
-                <input type="submit" name="sub" value="Iniciar sesión">
-                
-            </form>
+        <form action="'.$_SERVER['PHP_SELF'].'?controller=Usuarios&action=checkUserPass" class="d-flex flex-column align-items-start form" method="POST">
+
+            <h1 class="form__title">Inicia sesión para acceder</h1>
+
+            <div class="d-flex flex-column w-100 mt-3">
+
+                <label class="form__label" for="user">Tu nombre de usuario</label>
+                <input id="user" class="input" type="text" name="user"/>
+            </div>
+
+            <div class="d-flex flex-column w-100 mt-3">
+
+                <label class="form__label" for="user">Tu contraseña</label>
+                <input class="input" type="password" name="pass" />
+
+            </div>
+
+            <input class="button mt-4 " type="submit" name="sub" value="Iniciar sesión" />
+        </form>
         ';
         
     }
     
-    public function showError($errorMsg, $img=null) {
+    public function showMessage($errorMsg, $type="normal", $img=null) {
         
-        echo '<div>'.$errorMsg.'</div>';
+        echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
         echo `<img src="\Reservas-Hotel\views\assets\images\`.$img"/>`; 
     }
     

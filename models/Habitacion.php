@@ -62,4 +62,24 @@ class Habitacion {
     public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
     }
+
+
+    public function getTypeIcon($type){
+
+        switch ($type) {
+            case 'individual':
+                echo '<i class="fa-solid fa-person icon"></i>';
+                break;
+            case 'doble':
+                echo '<i class="fa-solid fa-people-group icon"></i>';
+                break;
+            case 'suite':
+                echo '<i class="fa-solid fa-hotel icon"></i>';
+                break;
+            default:
+                echo '<i class="fa-solid fa-house icon"></i>';
+        }
+    }
+
+
 }

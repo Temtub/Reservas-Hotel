@@ -75,9 +75,15 @@ class HotelesHabitacionesController {
     }
     
     public function addError() {
-        echo '<div>Ha ocurrido un error haciendo la reserva, vuelve a intentarlo</div>';
+        $this->viewHotelHabitaciones->showMessage('Ha ocurrido un error haciendo la reserva, vuelve a intentarlo.');
+        
         $this->selectAllHotelesAndHabitaciones();
     }
     
+    public function correctAdd() {
+        $this->viewHotelHabitaciones->showMessage('Se ha ejecutado correctamente la reserva.');
+
+        $this->selectAllHotelesAndHabitaciones();
+    }
 }
 

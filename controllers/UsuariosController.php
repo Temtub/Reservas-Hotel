@@ -100,7 +100,7 @@ class UsuariosController {
     }
 
     public function denieAcces() {
-        $this->view->showError('No puedes acceder sin iniciar sesión.', 'noGif.gif');
+        $this->view->showMessage('No puedes acceder sin iniciar sesión.', 'noGif.gif');
         $this->view->mostrarFormularioLogin();
     }
 
@@ -115,7 +115,7 @@ class UsuariosController {
         // Delete the cookies
         setcookie(session_name(), "", time() - 1000, "/");
 
-        $this->view->showError('Se ha cerrado sesión.');
+        $this->view->showMessage('Se ha cerrado sesión.');
         $this->view->mostrarFormularioLogin();
     }
 
