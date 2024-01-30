@@ -76,9 +76,15 @@ class UsuariosController {
                 $usuEquals = true;
             }
 
-            if (password_verify(trim($formData['pass']), $usuario->getContraseña()) && !$passEquals) {
+            $password = hash("SHA256", trim($formData['pass']) );
+            
+            if ($password === $usuario->getContraseña() && !$passEquals) {
                 $passEquals = true;
             }
+            
+            //if (password_verify(trim($formData['pass']), $usuario->getContraseña()) && !$passEquals) {
+            //    $passEquals = true;
+            //}
 
             if ($usuEquals && $passEquals) {
                 
@@ -120,7 +126,7 @@ class UsuariosController {
     }
 
     public function noBdConnection() {
-        echo '<div>Estamos en mantenimiento, prueba más tarde.</div>';
+        $this->view->showMessage('Estamos en mantenimiento, prueba más tarde.');
         // echo '<img src="\Reservas-Hotel\views\assets\images\sryGid.gif"/>';
         //    $this->view->mostrarFormularioLogin();
     }

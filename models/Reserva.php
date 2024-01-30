@@ -31,12 +31,12 @@ class Reserva {
 
     // Getter para $idHotel
     public function getIdHotel() {
-        return $this->id_usuario;
+        return $this->$id_hotel;
     }
 
     // Setter para $idHotel
     public function setIdHotel($idHotel) {
-        $this->id_usuario = $idHotel;
+        $this->$id_hotel = $idHotel;
     }
 
     // Getter para $idHabitacion
@@ -51,21 +51,21 @@ class Reserva {
 
     // Getter para $fechaEntrada
     public function getFechaEntrada() {
-        return $this->fechaEntrada;
+        return $this->fecha_entrada;
     }
 
     // Setter para $fechaEntrada
     public function setFechaEntrada($fechaEntrada) {
-        $this->fechaEntrada = $fechaEntrada;
+        $this->fecha_entrada = $fechaEntrada;
     }
 
     // Getter para $fechaSalida
     public function getFechaSalida() {
-        return $this->fechaSalida;
+        return $this->fecha_salida;
     }
 
     // Setter para $fechaSalida
     public function setFechaSalida($fechaSalida) {
-        $this->fechaSalida = $fechaSalida;
+        $this->fecha_salida = $fechaSalida;
     }
 }

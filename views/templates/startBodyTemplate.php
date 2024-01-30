@@ -34,7 +34,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" 
                                    href="<?php
-                                    echo $_SERVER['PHP_SELF'] . '?controller=ReservasHabitaciones&action=viewAllReservas';
+                                    echo $_SERVER['PHP_SELF'] . '?controller=ReservasHabitacionesHoteles&action=viewAllReservas';
                                    ?>" >Ver reservas</a>
                             </li>
                             

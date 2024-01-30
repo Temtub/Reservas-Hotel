@@ -26,6 +26,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\ReservasHa
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\models\ReservasModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\ReservasHabitacionesView.php';
 
+//Includes ReservasHabitacionesController
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\ReservasHabitacionesHotelesController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\ReservasHabitacionesHotelesView.php';
+
 //Habitaciones and hoteles controller and view
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\HotelesHabitacionesController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\HotelesHabitacionesView.php';
