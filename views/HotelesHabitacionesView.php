@@ -9,11 +9,17 @@ class HotelesHabitacionesView {
 
         foreach ($hoteles as $hotel) {
             //Transform the image to be capable of show it
-            $imagenBase64 = $hotel->getFotoBase64();
+            $img = $hotel->getFotoBase64();
 
+            $checkImg = false;
+        
+            if($img === 'views/assets/images/noPhoto.jpg'){
+                $checkImg = true;
+            }
+        
             echo '  <div class="cardCont ">
-                        <img src="data:image/jpeg;base64,' . $imagenBase64 . '" class="card__img" alt="...">
-                        <div class="card__body">
+             '.($checkImg ? '<img src="' . $img . '" class="card__img" alt="...">' : '<img src="data:image/jpeg;base64,' . $img . '" class="card__img" alt="...">').
+                        '<div class="card__body">
                             <h2 class="card-title">' . $hotel->getNombre() . '</h2>
                             <h3 class="direction">'. $hotel->getDireccion().' - '. $hotel->getCiudad().' - '. $hotel->getPais().'</h3>
                             <p class="card-text">' . $hotel->getDescripcion() . '</p>
@@ -45,11 +51,17 @@ class HotelesHabitacionesView {
         echo '<div class="hotelContainer">';
             
         //Transform the image to be capable of showing it
-        $imagenBase64 = $hotel->getFotoBase64();
-    
+        $img = $hotel->getFotoBase64();
+        
+        $checkImg = false;
+        
+        if($img === 'views/assets/images/noPhoto.jpg'){
+            $checkImg = true;
+        }
+        
         echo '<div class="cardCont ">
-                    <img src="data:image/jpeg;base64,' . $imagenBase64 . '" class="card__img" alt="...">
-                    <div class="card__body">
+             '.($checkImg ? '<img src="' . $img . '" class="card__img" alt="...">' : '<img src="data:image/jpeg;base64,' . $img . '" class="card__img" alt="...">').
+                    '<div class="card__body">
                         <h2 class="card-title">' . $hotel->getNombre() . '</h2>
                         <h3 class="direction">'. $hotel->getDireccion().' - '. $hotel->getCiudad().' - '. $hotel->getPais().'</h3>
                         <p class="card-text">' . $hotel->getDescripcion() . '</p>';

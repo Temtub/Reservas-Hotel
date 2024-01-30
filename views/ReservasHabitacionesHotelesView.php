@@ -14,17 +14,23 @@ class ReservasHabitacionesHotelesView {
     public function showReserva($habitacion, $hotel, $reserva) {
         
         $img = $hotel->getFotoBase64();
-        echo '<div class="hotelContainer">
+        
+        $checkImg = false;
+        
+        if($img === 'views/assets/images/noPhoto.jpg'){
+            $checkImg = true;
+        }
+        echo '<div class="reserv">
 
-            <img class="'.$img.'" src="asd" alt="">
+             '.($checkImg ? '<img src="' . $img . '" class="card__img" alt="...">' : '<img src="data:image/jpeg;base64,' . $img . '" class="card__img" alt="...">').
 
-            <div class="reserv__body">
+            '<div class="reserv__body">
                 <h2>'.$hotel->getNombre().'</h2>
                 <p>'.$hotel->getDescripcion().'</p>
-                <p>'.$habitacion->getDescripcion().' - '.$habitacion->getPrecio() .'</p>
+                <p>'.$habitacion->getDescripcion().' - '.$habitacion->getPrecio() .'€</p>
                 <p> '.$reserva->getFechaEntrada().' - '.$reserva->getFechaSalida().'</p>
             </div>
-        </div>';
+        </div> ';
         
     }
     

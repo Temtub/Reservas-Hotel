@@ -14,10 +14,10 @@ class ReservasHabitacionesView {
             $this->showMessage('Rellena la fecha de salida.', 'error');
         }
         
-        if($wrongDate === "true" && $salida === "false" && $entrada === "false"){
+        if($wrongDate === "true" ){
             $this->showMessage('La entrada no puede ser antes que la salida.', 'error');
         }
-        
+
         echo '<form class="row g-3 formulario" method="POST" action="' . $_SERVER['PHP_SELF'] . '?controller=ReservasHabitaciones&action=submitReserva">
             <div class="col-md-6">
                 <label class="form-label">Habitación:</label>

@@ -32,7 +32,7 @@ class ReservasHabitacionesHotelesController {
             if($reserva->getIdUsuario() == $user->getId() ){
                 
                 //Get the habitacion of the reserva
-                $habitacion = $this->modelHabitaciones->getHabitacion($reserva->getId() );
+                $habitacion = $this->modelHabitaciones->getHabitacion($reserva->getIdHabitacion() );
                 
                 if ($habitacion) {
                     
@@ -47,7 +47,7 @@ class ReservasHabitacionesHotelesController {
                 } else {
                     // Manejar el caso en que getHabitacion devuelve false
                     $this->view->showMessage('Ha ocurrido un problema.');
-                    exit;
+                    
                 }
             }
         }

@@ -52,4 +52,23 @@ class ReservasModel {
         header('Location:' . $_SERVER['PHP_SELF'] . '?controller=HotelesHabitaciones&action=correctAdd');
         
     }
+    
+    public function comprobarReserva($id, $fechaEntrada, $fechaSalida) {
+        // Preparamos una consulta de PDO para recuperar todas las tareas de la tabla "reservas" y lo reservamos en una nueva variable
+        $stmt = $this->pdo->prepare('SELECT * FROM reservas WHERE id=? AND fecha_entrada=? AND fecha_salida=?');
+    
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Reserva');
+    
+        $stmt->bindParam(1, $userId);
+        $stmt->bindParam(2, $hotelId);
+        $stmt->bindParam(3, $habitacionId);
+        
+        //If theres an error in this part it throws an exception
+        if (!$stmt->execute()) {
+            throw new Swoole\MySQL\Exception("Error al ejecutar la consulta.");
+        }
+        
+        //Return the reservas
+        return $stmt->fetchAll();
+    }
 }

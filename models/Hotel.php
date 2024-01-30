@@ -17,6 +17,12 @@ class Hotel {
     public function getFotoBase64() {
         $fotoBinaryData = $this->getFoto();
         $fotoBase64 = base64_encode($fotoBinaryData);
+        if(empty($fotoBase64) ){
+        $imagePath = 'views/assets/images/noPhoto.jpg';
+
+            return $imagePath;
+        }
+        
         return $fotoBase64;
     }
 

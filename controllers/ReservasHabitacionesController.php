@@ -50,6 +50,7 @@ class ReservasHabitacionesController {
             $wrongDate = filter_input(INPUT_GET, "wrongDate");
         }
         
+        
         $id = filter_input(INPUT_GET, "id");
 
         //echo $salida. " bbbb ".$entrada;
@@ -118,6 +119,8 @@ class ReservasHabitacionesController {
         $habitacion = $this->modelHabitaciones->getHabitacion($id);
         
         $user = $_SESSION['user'];
+        
+        $this->modelReservas->comprobarReserva();
 
         try {
             //If the code reaches here means that the info is correct

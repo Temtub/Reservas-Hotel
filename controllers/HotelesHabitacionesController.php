@@ -16,6 +16,9 @@ class HotelesHabitacionesController {
         $this->viewHotelHabitaciones = new HotelesHabitacionesView();
     }
     
+    /**
+     * Function to show all the hotels with his rooms
+     */
     public function selectAllHotelesAndHabitaciones() {
                
         //check the session 
