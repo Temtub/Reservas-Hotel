@@ -1,6 +1,9 @@
 
 <?php
 
+/**
+ * Controller for the Hoteles and Habitaciones
+ */
 class HotelesHabitacionesController {
 
     // Obtiene una instancia del modelo y de la vista de tareas
@@ -31,6 +34,9 @@ class HotelesHabitacionesController {
         
     }
     
+    /**
+     * Function to show that there is no data selected
+     */
     public function noDataSelectAllHotelesAndHabitaciones() {
                
         //check the session 
@@ -43,6 +49,10 @@ class HotelesHabitacionesController {
         
     }
     
+    
+    /**
+     * Function to show all a hotel and its rooms
+     */
     public function showHotelAndRooms() {
         //check the session 
         require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\lib\sesion.php';
@@ -67,24 +77,39 @@ class HotelesHabitacionesController {
                     $this->viewHotelHabitaciones->showHotelAndRooms($hotel[0], $habitaciones);
 
                 }
-                
+                else{
+                    $this->errorShowinHotel();
+                }
                 
             }
         } catch (Exception $ex) {
             // Handle exceptions (e.g., database errors)
-            $this->viewHotelHabitaciones->showErrorPage($ex->getMessage());
+            $this->viewHotelHabitaciones->showMessage('Ha ocurrido un error mostrando el hotel.', "error");
         }
            
     }
-    
+    /**
+     * Function to show that there was an error in the page of showing an hotel
+     */
+    public function errorShowinHotel() {
+        $this->viewHotelHabitaciones->showMessage('Ha ocurrido un problema, vuelve a intentarlo.', "error");
+        $this->selectAllHotelesAndHabitaciones();
+    }
+    /**
+     * Function to show that there was an error doing the Reserva
+     */
     public function addError() {
         $this->viewHotelHabitaciones->showMessage('Ha ocurrido un error haciendo la reserva, vuelve a intentarlo.');
         
         $this->selectAllHotelesAndHabitaciones();
     }
     
+    
+    /**
+     * Function to show that the Reserva was correctly added
+     */
     public function correctAdd() {
-        $this->viewHotelHabitaciones->showMessage('Se ha ejecutado correctamente la reserva.');
+        $this->viewHotelHabitaciones->showMessage('Se ha ejecutado correctamente la reserva.', "correct");
 
         $this->selectAllHotelesAndHabitaciones();
     }

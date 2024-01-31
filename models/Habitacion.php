@@ -64,6 +64,10 @@ class Habitacion {
     }
 
 
+    /**
+     * Function to show an icon for the type of image
+     * @param String $type<p>Type of a room</p>
+     */
     public function getTypeIcon($type){
 
         switch ($type) {

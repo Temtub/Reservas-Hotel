@@ -20,13 +20,19 @@ class HabitacionesModel {
         
         //If theres an error in this part it throws an exception
         if(!$stmt->execute()){
-            throw new Swoole\MySQL\Exception();
+            header('Location: ' . $_SERVER['PHP_SELF'] . '?controller=HotelesHabitaciones&action=errorShowinHotel');    
         }
         
         //Return the usuarios
         return $stmt->fetchAll();
     }
     
+    /**
+     * 
+     * @param type $idHotel
+     * @return type
+     * @throws Swoole\MySQL\Exception
+     */
     public function gethabitacionesFromHotel($idHotel) {
         // Preparamos una consulta de PDO para recuperar todas "habitaciones" de un hotel y lo reservamos en una nueva variable
         $stmt = $this->pdo->prepare('SELECT * FROM habitaciones WHERE id_hotel=?');
@@ -38,7 +44,7 @@ class HabitacionesModel {
         
         //If theres an error in this part it throws an exception
         if(!$stmt->execute()){
-            throw new Swoole\MySQL\Exception();
+            header('Location: ' . $_SERVER['PHP_SELF'] . '?controller=HotelesHabitaciones&action=errorShowinHotel');
         }
         
         //Return the usuarios
@@ -56,7 +62,7 @@ class HabitacionesModel {
         
         //If theres an error in this part it throws an exception
         if(!$stmt->execute()){
-            throw new Swoole\MySQL\Exception();
+            header('Location: ' . $_SERVER['PHP_SELF'] . '?controller=HotelesHabitaciones&action=errorShowinHotel');
         }
         
         

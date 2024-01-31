@@ -16,10 +16,16 @@ class ReservasHabitacionesHotelesController {
         $this->modelHoteles = new HotelesModel();
     }
     
+    /**
+     * Function to show all of the reservas
+     */
     public function viewAllReservas(){
         
+        //Check the session
         require $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\lib\sesion.php';
 
+        $this->view->introPage();
+        
         //Get all the reservas
         $reservas = $this->modelReservas->getReservas();
         
@@ -42,15 +48,19 @@ class ReservasHabitacionesHotelesController {
                         $this->view->showReserva($habitacion, $hotel[0], $reserva);
                     } else {
                         // Manejar el caso en que getOneHotel devuelve false
-                        $this->view->showMessage('No se ha podido obtener la información del hotel.');
+                        $this->view->showMessage('Ha ocurrido un error, pruebe más tarde.');
                     }
                 } else {
                     // Manejar el caso en que getHabitacion devuelve false
-                    $this->view->showMessage('Ha ocurrido un problema.');
+                    $this->view->showMessage('Ha ocurrido un problema intentelo más tarde.');
                     
                 }
             }
         }
 
+    }
+    
+    public function showError() {
+        $this->view->showMessage('Ha ocurrido un erro mostrandote las reservas.', "error");
     }
 }

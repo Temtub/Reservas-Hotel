@@ -49,7 +49,7 @@ class UsuariosView{
             <div class="d-flex flex-column w-100 mt-3">
 
                 <label class="form__label" for="user">Tu nombre de usuario</label>
-                <input id="user" class="input" type="text" name="user"/>
+                <input id="user" focused class="input" type="text" name="user"/>
             </div>
 
             <div class="d-flex flex-column w-100 mt-3">
@@ -65,10 +65,20 @@ class UsuariosView{
         
     }
     
+    
+    /**
+     * Function to show a message
+     * 
+     * @param String $errorMsg <p>Message you want to show</p>
+     * @param String $type <p>Type of the message</p>
+     * @param String $img <p>image you want to show</p>
+     */
     public function showMessage($errorMsg, $type="normal", $img=null) {
         
         echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
-        echo `<img src="\Reservas-Hotel\views\assets\images\`.$img"/>`; 
+        
+        echo '<img class="messageImg" src="views/assets/images/'. $img .'">';
+
     }
     
 }

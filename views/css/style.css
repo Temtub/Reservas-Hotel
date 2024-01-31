@@ -11,6 +11,15 @@
 body{
     font-family: Normal;
 }
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.page__title{
+    font-family: NewWake;
+    margin-top: 15px;
+}
 /**********************************LOGIN FORM**************************/
 .form{
     margin: auto;
@@ -60,6 +69,9 @@ body{
 
 
 /************NAVBAR ****************/
+.navbar{
+    width: 80%;
+}
 .navbar__title {
     font-family: NewWake;
     color: #FF9933;
@@ -99,10 +111,17 @@ body{
 .normal{
     background-color: rgba(0, 40, 119, 0.473); 
 }
+.correct{
+    background-color: #57e5a2;
+}
 .error{
     background-color: #FF7999;
 }
-
+.messageImg{
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
 
 /************END ERROR MESSAGEs ****************/
 
@@ -141,15 +160,14 @@ body{
     margin-top: -5px;
 }
 .card__img{
-    max-width: 350px;
-    max-height: 350px;
-    width: auto;
-    height: auto;
+    width: 300px;
+    height: 250px;
+   
     border-radius: 5px 0px 0px 5px;
 }
 .card__body{
     /* margin-left: 20px; */
-    padding: 10px;
+    padding: 15px;
 
     display: flex;
     flex-direction: column;
@@ -174,6 +192,18 @@ body{
 
 /****** HACER RESERVA FORM ************/
 
+.reservasFormCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.formReservas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /****** END HACER RESERVA FORM ************/
 
 
@@ -182,14 +212,25 @@ body{
 
     display: flex;
     flex-direction: row;
+    
     box-shadow: 0px 0px 52px -10px rgba(0,0,0,0.25);
-
+    width: 65%;
+    margin: auto;
     margin-bottom: 30px;
     margin-top: 30px;
     border-radius: 5px;
 }
 .reserv__body{
     margin-left: 20px;
+}
+.reserv__subt{
+    font-weight: 800;
+    margin-bottom: -1px;
+}
+.reserv__span{
+    font-family: NewWake;
+    font-weight: 100;
+    color: #616161;
 }
 /********** END RESERVA CARD ******************/
 

@@ -5,6 +5,7 @@ class HotelesHabitacionesView {
     // Muestra la lista de tareas
     public function showHotelsRooms($hoteles, $habitaciones) {
 
+        echo '<h1 class="page__title">Todos los hoteles encontrados:</h1>';
         echo '<div class="hotelContainer">';
 
         foreach ($hoteles as $hotel) {
@@ -23,7 +24,8 @@ class HotelesHabitacionesView {
                             <h2 class="card-title">' . $hotel->getNombre() . '</h2>
                             <h3 class="direction">'. $hotel->getDireccion().' - '. $hotel->getCiudad().' - '. $hotel->getPais().'</h3>
                             <p class="card-text">' . $hotel->getDescripcion() . '</p>
-                            ';
+                            <p class="reserv__subt">Habitaciones:</p>
+';
             foreach ($habitaciones as $habitacion) {
                 if ($habitacion->getIdHotel() === $hotel->getId()) {
                     echo '<p>' . $habitacion->getNumHabitacion().' - '. $habitacion->getDescripcion() . '</p>';
@@ -32,7 +34,7 @@ class HotelesHabitacionesView {
             echo ' 
                 <form action="'.$_SERVER['PHP_SELF'].'?controller=HotelesHabitaciones&action=showHotelAndRooms" method="POST">
                     <input type="hidden" name="idHotel" value="'.$hotel->getId().'">
-                    <input class="button smallButton" type="submit" name="sub" value="Ver habitaciones">
+                    <input class="button smallButton" type="submit" name="sub" value="Ver habitaciones.">
                 </form>
                         </div>
                     </div>';
@@ -42,12 +44,12 @@ class HotelesHabitacionesView {
     }
     
     public function noDataShowHotelRooms($hotel, $habitaciones) {
-        
-        echo '<div>Has de escoger una habitación para hacer una reserva.</div>';
+        $this->showMessage('Has de escoger una habitación para hacer una reserva.');
         $this->showHotelsRooms($hotel, $habitaciones);
     }
     
     public function showHotelAndRooms($hotel, $habitaciones) {
+        echo '<h1 class="page__title">Que habitación quieres reservar.</h1>';
         echo '<div class="hotelContainer">';
             
         //Transform the image to be capable of showing it
@@ -64,7 +66,9 @@ class HotelesHabitacionesView {
                     '<div class="card__body">
                         <h2 class="card-title">' . $hotel->getNombre() . '</h2>
                         <h3 class="direction">'. $hotel->getDireccion().' - '. $hotel->getCiudad().' - '. $hotel->getPais().'</h3>
-                        <p class="card-text">' . $hotel->getDescripcion() . '</p>';
+                        <p class="card-text">' . $hotel->getDescripcion() . '</p>
+                        <p class="reserv__subt">Habitaciones:</p>
+                ';
 
                         foreach ($habitaciones as $habitacion) {
                             if ($habitacion->getIdHotel() === $hotel->getId()) {
@@ -80,14 +84,17 @@ class HotelesHabitacionesView {
         echo '</div></div></div>'; // Cierre de los divs
     }
     
-    
-    
-    public function showErrorPage($param) {
-        echo '<h1>Error: '.$param.'</h1>';
-    }
-    
-    public function showMessage($msg) {
-        echo '<div>'.$msg.'</div>';
+    /**
+     * Function to show a message
+     * 
+     * @param String $errorMsg <p>Message you want to show</p>
+     * @param String $type <p>Type of the message</p>
+     * @param String $img <p>image you want to show</p>
+     */
+    public function showMessage($errorMsg, $type="normal", $img=null) {
+        
+        echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
+
     }
 }
 

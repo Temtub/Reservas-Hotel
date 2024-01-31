@@ -106,7 +106,7 @@ class UsuariosController {
     }
 
     public function denieAcces() {
-        $this->view->showMessage('No puedes acceder sin iniciar sesión.', 'noGif.gif');
+        $this->view->showMessage('No puedes acceder sin iniciar sesión.', "error", 'noGif.gif');
         $this->view->mostrarFormularioLogin();
     }
 

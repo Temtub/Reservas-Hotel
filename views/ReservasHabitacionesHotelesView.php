@@ -27,19 +27,39 @@ class ReservasHabitacionesHotelesView {
             '<div class="reserv__body">
                 <h2>'.$hotel->getNombre().'</h2>
                 <p>'.$hotel->getDescripcion().'</p>
+                <p class="reserv__subt">Habitacion:</p>
                 <p>'.$habitacion->getDescripcion().' - '.$habitacion->getPrecio() .'€</p>
-                <p> '.$reserva->getFechaEntrada().' - '.$reserva->getFechaSalida().'</p>
+                <p class="reserv__subt">Fecha:</p>
+                <p> '.$reserva->getFechaEntrada().'  <span class="reserv__subt">al</span>  '.$reserva->getFechaSalida().'</p>
             </div>
         </div> ';
         
     }
     
     /**
-     * Function to show an error
-     * @param String $msg <p>Message you want to show</p>
+     * Function to show the title 
      */
-    public function showMessage($msg) {
-        echo '<div>'.$msg.'</div>';
+    public function introPage() {
+        echo '<h1 class="page__title">Estas son tus reservas:</h1>';
+        
+    }
+    
+    
+    /**
+     * Function to show a message
+     * 
+     * @param String $errorMsg <p>Message you want to show</p>
+     * @param String $type <p>Type of the message</p>
+     * @param String $img <p>image you want to show</p>
+     */
+    public function showMessage($errorMsg, $type="normal", $img=false) {
+        
+        echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
+        
+        if(!$img){
+            return;
+        }
+        echo ($img ? '<img src="/Reservas-Hotel/views/assets/images/' . $img . '"/>' : null);
     }
 
 }

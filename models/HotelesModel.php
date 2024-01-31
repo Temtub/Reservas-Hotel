@@ -11,7 +11,10 @@ class HotelesModel {
         $this->pdo = $this->bd->getPDO();
     }
 
-    // Recupera la lista de tareas de la base de datos
+    /**
+     * Function to show all the hotels
+     * @return Array <p>Array of Object Hotel</p>
+     */
     public function getHoteles() {
         // Preparamos una consulta de PDO para recuperar todas las tareas de la tabla "hotel" y lo reservamos en una nueva variable
         $stmt = $this->pdo->prepare('SELECT * FROM hoteles');
@@ -20,16 +23,21 @@ class HotelesModel {
         
         //If theres an error in this part it throws an exception
         if(!$stmt->execute()){
-            throw new Swoole\MySQL\Exception();
+            header('Location:' . $_SERVER['PHP_SELF'] . '?controller=ReservasHabitacionesHoteles&action=showError');
         }
         
         
         //Return the usuarios
         return $stmt->fetchAll();
     }
-    
+
+    /**
+     * Function to get one hotel
+     * @param String $id <p>Id of the hotel to search</p>
+     * @return Object <p>Object of class hotel</p>
+     * @throws Swoole\MySQL\Exception <p></p>
+     */
     public function getOneHotel($id) {
-        // Preparamos una consulta de PDO para recuperar un "hotel" y lo reservamos en una nueva variable
         $stmt = $this->pdo->prepare('SELECT * FROM hoteles WHERE id=?');
         
         //Put the id of the hotel we searching
@@ -39,7 +47,7 @@ class HotelesModel {
         
         //If theres an error in this part it throws an exception
         if(!$stmt->execute()){
-            throw new Swoole\MySQL\Exception();
+            header('Location:' . $_SERVER['PHP_SELF'] . '?controller=ReservasHabitacionesHoteles&action=showError');
         }
         
         //Return the usuarios
