@@ -30,6 +30,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\ReservasHabitaci
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\ReservasHabitacionesHotelesController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\ReservasHabitacionesHotelesView.php';
 
+//Error controller and view
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\ErrorController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\ErrorView.php';
+
 //Habitaciones and hoteles controller and view
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\controllers\HotelesHabitacionesController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\HotelesHabitacionesView.php';
@@ -81,7 +85,9 @@ function cargarControlador($nombreControlador) {
     } else {
         // Si el controlador no existe, se lanza una excepción
         //O añadir una página indicando el error del controlador
-        die ("controlador no válido");
+        header('Location:' . $_SERVER['PHP_SELF'] . '?controller=Error&action=noController&id');
+        exit;
+
     }
 }
 

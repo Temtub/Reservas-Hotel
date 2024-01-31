@@ -15,9 +15,7 @@ class DB{
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
            
         } catch (Exception $ex) {
-            //echo $ex->getMessage();
-            //ARREGLAR 
-            //header('Location: '.$_SERVER['PHP_SELF'].'?controller=Usuarios&action=');
+            header('Location: '.$_SERVER['PHP_SELF'].'?controller=Error&action=noBd');
         }
     }
 

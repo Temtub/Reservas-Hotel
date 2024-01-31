@@ -44,7 +44,7 @@ class ReservasHabitacionesView {
                     <input type="date" class="input" id="inputFechaSalida" name="fechaSalida">
                 </div>
                 <div class="col-12">
-                    <button class="button mt-4 " type="submit" class="btn btn-primary">Hacer reserva</button>
+                    <button class="button mt-4 " type="submit" >Hacer reserva</button>
                 </div>
            
         </form> </div>';

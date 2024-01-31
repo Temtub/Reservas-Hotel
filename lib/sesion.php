@@ -7,7 +7,7 @@
     }
     
     $user = $_SESSION['user'];
-    
+    //include $_SERVER['DOCUMENT_ROOT'] . '\Reservas-Hotel\views\templates\startBodyTemplate.php';
     updateLastLoginTime();
         
     

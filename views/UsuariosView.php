@@ -49,17 +49,17 @@ class UsuariosView{
             <div class="d-flex flex-column w-100 mt-3">
 
                 <label class="form__label" for="user">Tu nombre de usuario</label>
-                <input id="user" focused class="input" type="text" name="user"/>
+                <input id="user" class="input" type="text" name="user">
             </div>
 
             <div class="d-flex flex-column w-100 mt-3">
 
                 <label class="form__label" for="user">Tu contraseña</label>
-                <input class="input" type="password" name="pass" />
+                <input class="input" type="password" name="pass" >
 
             </div>
 
-            <input class="button mt-4 " type="submit" name="sub" value="Iniciar sesión" />
+            <input class="button mt-4 " type="submit" name="sub" value="Iniciar sesión" >
         </form>
         ';
         
@@ -77,7 +77,7 @@ class UsuariosView{
         
         echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
         
-        echo '<img class="messageImg" src="views/assets/images/'. $img .'">';
+        echo '<img class="messageImg" alt="image" src="views/assets/images/'. $img .'">';
 
     }
     

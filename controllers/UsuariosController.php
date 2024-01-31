@@ -121,7 +121,7 @@ class UsuariosController {
         // Delete the cookies
         setcookie(session_name(), "", time() - 1000, "/");
 
-        $this->view->showMessage('Se ha cerrado sesión.');
+        $this->view->showMessage('Se ha cerrado sesión.', "normal", "byeBye.gif");
         $this->view->mostrarFormularioLogin();
     }
 

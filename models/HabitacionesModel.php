@@ -11,7 +11,10 @@ class HabitacionesModel {
       $this->pdo = $this->bd->getPDO();
     }
 
-    // Recupera la lista de tareas de la base de datos
+    /**
+     * Function to get all the habitaciones from the BD
+     * @return Array <p></p>
+     */
     public function getHabitaciones() {
         // Preparamos una consulta de PDO para recuperar todas las tareas de la tabla "habitaciones" y lo reservamos en una nueva variable
         $stmt = $this->pdo->prepare('SELECT * FROM habitaciones');
