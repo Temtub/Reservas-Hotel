@@ -77,6 +77,9 @@ class UsuariosView{
         
         echo '<div class="message '.$type.'">'.$errorMsg.'</div>';
         
+        if($img == null){
+            return;
+        }
         echo '<img class="messageImg" alt="image" src="views/assets/images/'. $img .'">';
 
     }
